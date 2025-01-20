@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2C3E50;    /* 주색 */
+      --primary: #2C3E50;   /* 주색 */
       --secondary: #3498DB; /* 부색 */
       --accent: #E74C3C;    /* 포인트 컬러 */
       --text: #2C3E50;      /* 기본 텍스트 색 */
@@ -34,6 +34,7 @@
     }
     h2, h3 {
       line-height: 1.3;
+      margin-bottom: 16px;
     }
 
     .container {
@@ -55,30 +56,26 @@
       overflow: hidden;
       padding: 0 24px;
     }
-
     .hero::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: url('/api/placeholder/1920/1080') center/cover;
+      background: url('/api/placeholder/1920/1080') center/cover no-repeat;
       opacity: 0.1;
       z-index: 0;
     }
-
     .hero-content {
       position: relative;
       z-index: 1;
       max-width: 800px;
       margin: 0 auto;
     }
-
     .hero h1 {
-      font-size: 3.2rem; /* 글씨 크기 조정 */
+      font-size: 3.2rem;
       font-weight: 700;
       margin-bottom: 24px;
       line-height: 1.2;
     }
-
     .hero p {
       font-size: 1.5rem;
       opacity: 0.9;
@@ -220,6 +217,42 @@
     .reviewer {
       color: var(--gray);
       font-size: 1rem;
+    }
+
+    /* 이벤트 섹션 */
+    .event-section {
+      padding: 80px 0;
+      background: #ffecec;
+    }
+
+    /* FAQ 섹션 */
+    .faq-section {
+      padding: 100px 0;
+      background: #f9f9f9;
+    }
+    .faq-inner h3 {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    /* 상담 프로세스 섹션 */
+    .process-section {
+      padding: 100px 0;
+      background: #f0f8ff;
+    }
+
+    /* 팀(전문가) 소개 섹션 */
+    .team-section {
+      padding: 100px 0;
+      background: #fafafa;
+    }
+
+    /* 주의사항(Disclaimer) 섹션 */
+    .disclaimer-section {
+      padding: 60px 0;
+      background: #fff;
     }
 
     /* Pricing Section */
@@ -400,22 +433,86 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     }
 
+    /* 반응형 스타일 */
     @media (max-width: 768px) {
+      /* Hero Section */
+      .hero {
+        min-height: auto;
+        padding: 60px 24px;
+      }
       .hero h1 {
-        font-size: 2rem; /* 모바일에서 더 줄어들도록 */
+        font-size: 2rem;
+        margin-bottom: 16px;
       }
       .hero p {
         font-size: 1.3rem;
+        margin-bottom: 24px;
       }
+
+      /* 섹션 타이틀 */
       .section-title h2 {
         font-size: 2rem;
+      }
+      .section-title p {
+        font-size: 1.2rem;
+      }
+
+      /* 그리드 -> 1열로 변경 */
+      .hook-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .review-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .pricing-plans {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* 글씨 크기/여백 조정 */
+      p, li {
+        font-size: 1.1rem;
+      }
+      h2, h3 {
+        margin-bottom: 12px;
+      }
+      .why-worried,
+      .hooking-section,
+      .free-pdf-section,
+      .extra-trouble,
+      .premium-package-section,
+      .reviews,
+      .event-section,
+      .faq-section,
+      .process-section,
+      .team-section,
+      .disclaimer-section,
+      .pricing-section,
+      .cta-section {
+        padding: 60px 24px;
+      }
+      .why-worried-inner,
+      .hooking-inner,
+      .free-pdf-inner,
+      .extra-trouble-inner,
+      .premium-package-inner,
+      .review-grid,
+      .event-inner,
+      .faq-inner,
+      .process-inner,
+      .team-inner,
+      .disclaimer-inner,
+      .pricing-plans,
+      .cta-box {
+        margin-top: 24px !important;
+      }
+      .pdf-form input {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
 
-<center>
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
@@ -440,7 +537,7 @@
         <p>모두가 겪지만, 혼자 해결하긴 막막한 일들입니다</p>
       </div>
       <div class="why-worried-inner">
-        <p><strong>“이직을 할까 말까”</strong> 길고 긴 고민을 반복하는 중인가요? <br>
+        <p><strong>“이직을 할까 말까”</strong> 길고 긴 고민을 반복하는 중인가요?<br>
           아무리 노력해도 결과가 안 따라줘 좌절감이 들고 계신가요?</p>
         <p><strong>연애는 늘 실패의 연속</strong>이고, 솔로라이프가 지겨워<br>
           새로운 만남이 간절한데도 인연이 쉽게 찾아오지 않나요?</p>
@@ -525,43 +622,39 @@
         <p>“문제점을 알았지만, 해결책이 궁금해요!”</p>
       </div>
       <div class="extra-trouble-inner">
-       
+        <h2 class="main-title" style="text-align:center; margin-bottom:24px;">
+          인생의 중요한 순간, 혼자 고민하지 마세요.
+        </h2>
+        <div class="service-list" style="display:flex; flex-wrap:wrap; gap:40px; justify-content:center; margin-bottom:24px;">
+          <div class="service-item" style="max-width:260px;">
+            <h3>연애와 결혼</h3>
+            <p>당신의 진정한 인연을 찾아드립니다</p>
+          </div>
 
-        <!-- 새로 추가된 내용 시작 -->
-        <p>
-          “아, 내가 왜 이런 문제를 겪는진 알겠어요.<br>
-          그런데 어떻게 해결하고, 구체적으로 무엇을 해야 좋을까요?”<br>
-          이렇게 물으시는 분들이 정말 많습니다.<br>
-          인생의 모든 영역에서 더 나은 선택과 변화를 원하시는 분들을 위해,<br>
-          보다 깊이 있는 상담을 준비했습니다.
-        </p>
-        <p>
-          <strong>연애와 결혼</strong> — “나에게 맞는 이상형은 누구일까?”,<br>
-          “지금 만나는 사람과 결혼해도 될까?” 등 인연과 관련된 구체적인 조언
-        </p>
-        <p>
-          <strong>재물과 투자</strong> — “지금이 부동산 투자할 시기일까?”,<br>
-          “주식과 코인, 어떤 포트폴리오가 좋을까?” 등 자산 관리 방향 제시
-        </p>
-        <p>
-          <strong>직장과 이직</strong> — “언제가 이직하기 좋은 타이밍일까?”,<br>
-          “어떤 업종으로 가야 성공할 수 있을까?” 등 경력 관련 가이드
-        </p>
-        <p>
-          <strong>대인관계</strong> — “상사와의 갈등, 어떻게 풀어가야 할까?”,<br>
-          “가족간의 불화, 어떤 방식으로 대화해야 할까?” 등 관계 개선 방법
-        </p>
-        <p>
-          이런 구체적인 고민들에 대해, 1:1 맞춤형 유료 상담을 통해<br>
-          상세한 해결책을 제시해 드립니다. 당신의 에너지와 운세를 정확히 분석하여,<br>
-          각 상황별로 실천 가능한 액션 플랜을 제시해 드립니다.<br>
-          막연한 조언이 아닌, 당신의 상황에 맞는 구체적이고 실용적인 해결책을 찾아보세요.
-        </p>
-        <p>
-          예약 및 상담 문의는 <strong>아래 연락처</strong>로 편하게 문의해 주시기 바랍니다.
-        </p>
-        <!-- 새로 추가된 내용 끝 -->
+          <div class="service-item" style="max-width:260px;">
+            <h3>재물과 투자</h3>
+            <p>확실한 자산 성장의 길을 제시합니다</p>
+          </div>
 
+          <div class="service-item" style="max-width:260px;">
+            <h3>직장과 이직</h3>
+            <p>성공적인 커리어의 터닝포인트를 만듭니다</p>
+          </div>
+
+          <div class="service-item" style="max-width:260px;">
+            <h3>대인관계</h3>
+            <p>갈등을 화합으로 바꾸는 해법을 드립니다</p>
+          </div>
+        </div>
+
+        <div class="bottom-message" style="text-align:center; margin-bottom:24px;">
+          <p><strong>막연한 고민에서 구체적인 해결책으로,</strong></p>
+          <p>1:1 맞춤형 상담으로 당신의 미래를 디자인해드립니다.</p>
+        </div>
+
+        <div class="cta" style="text-align:center;">
+          <p class="contact-text" style="font-weight:700;">지금 바로 연락주세요 ↓</p>
+        </div>
       </div>
     </div>
   </section>
@@ -594,7 +687,7 @@
     </div>
   </section>
 
-  <!-- Review Section (6개 후기) -->
+  <!-- Review Section -->
   <section class="reviews">
     <div class="container">
       <div class="section-title">
@@ -632,6 +725,113 @@
           <p class="review-text">“운세는 막연하다고 생각했는데, 여기선 숫자로 명확히 보여주니 굉장히 신뢰가 갑니다.”</p>
           <p class="reviewer">황○○ (25세, 대학생)</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 이벤트 섹션 (Event Section) -->
+  <section class="event-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>이벤트 안내</h2>
+        <p>지금 상담 신청 시, 추가 혜택을 드립니다.</p>
+      </div>
+      <div class="event-inner" style="margin-top: 32px; text-align:center;">
+        <p style="font-size:1.2rem; line-height:1.8;">
+          현재 신규 신청 고객님께 <strong>10% 할인 혜택</strong>을 드립니다.<br>
+          친구에게 추천 시, <strong>추가 상담 10분</strong> 무료 제공!<br>
+          (기간: 2025.01.01 ~ 2025.01.31 / 선착순 50명 한정)
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ 섹션 -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>자주 묻는 질문(FAQ)</h2>
+        <p>많이 물어보시는 내용을 미리 정리해두었어요</p>
+      </div>
+      <div class="faq-inner" style="margin-top: 48px;">
+        <h3>Q1. 무료 보고서는 언제 받을 수 있나요?</h3>
+        <p>이름과 생년월일, 이메일을 입력하면 보통 5분 이내에 자동으로 보고서를 보내드립니다. 메일이 오지 않는다면 스팸함도 확인해 보세요.</p>
+
+        <h3>Q2. 상담 시간은 어떻게 예약하나요?</h3>
+        <p>상담 신청 폼 작성 후 24시간 내에 담당자가 연락을 드립니다. 원하시는 상담 시간대를 조율하여 예약 확정이 진행됩니다.</p>
+
+        <h3>Q3. 상담 시 준비해야 할 것이 있나요?</h3>
+        <p>평소 궁금했던 점을 미리 정리해 두시면, 상담 시간을 더욱 알차게 활용하실 수 있습니다.</p>
+
+        <h3>Q4. 개인정보는 안전하게 보호되나요?</h3>
+        <p>네, 입력해주신 정보는 오직 보고서 생성 및 상담을 위해서만 사용되며, 절대로 외부로 유출하지 않습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 상담 프로세스 섹션 -->
+  <section class="process-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>상담 진행 프로세스</h2>
+        <p>단계별로 차근차근 안내해 드려요.</p>
+      </div>
+      <div class="process-inner" style="margin-top: 48px;">
+        <ol style="font-size:1.2rem; line-height:1.8;">
+          <li><strong>무료 보고서 발송</strong>: 신청서 작성 후, 5분 내로 이메일 발송</li>
+          <li><strong>상담 신청 접수</strong>: 원하시는 상담 종류와 시간을 폼에 기입</li>
+          <li><strong>담당자 확인 연락</strong>: 상담 가능 시간 조율 및 결제 안내</li>
+          <li><strong>실시간 상담 진행</strong>: 전화 또는 화상 미팅으로 심층 분석 + 질의응답</li>
+          <li><strong>사후 리포트 제공</strong>: 필요 시 이메일/문서로 요약 보고서 전달</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 팀(전문가) 소개 섹션 -->
+  <section class="team-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>전문가 소개</h2>
+        <p>경력과 노하우를 갖춘 상담 전문가가 함께합니다</p>
+      </div>
+      <div class="team-inner" style="margin-top: 48px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
+          <!-- 예시 프로필 카드 -->
+          <div style="background: #fff; padding: 24px; border-radius: 16px; max-width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <img src="/api/placeholder/300/300" alt="Profile" style="width: 100%; border-radius: 8px; margin-bottom:16px;">
+            <h3 style="font-size:1.4rem; margin-bottom:8px;">홍길동</h3>
+            <p style="color: var(--gray); margin-bottom:12px;">수비학 컨설턴트 | 10년 경력</p>
+            <p>
+              수비학, 동양철학, 상담심리 자격을 모두 보유한 멀티 전문가입니다.<br>
+              1,000명 이상의 개인 상담 경험을 바탕으로,
+              실질적이고 구체적인 솔루션을 제공합니다.
+            </p>
+          </div>
+          <!-- 필요한 만큼 반복해서 전문가 카드 추가 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 주의사항(Disclaimer) 섹션 -->
+  <section class="disclaimer-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>주의사항 및 안내</h2>
+        <p>안전하고 올바른 의사결정을 위해 꼭 읽어주세요</p>
+      </div>
+      <div class="disclaimer-inner" style="margin-top: 32px; font-size:1.2rem; line-height:1.8;">
+        <p>
+          본 상담 및 보고서는 참고용 자료로서, 의학적·법률적·재무적 조언을 대신할 수 없습니다.
+          모든 의사결정은 최종적으로 본인의 책임과 판단에 의해 이루어져야 하며,
+          본 서비스 제공자는 이용자가 내린 결정에 대해 법적 책임을 지지 않습니다.
+        </p>
+        <br>
+        <p>
+          또한, 개인 정보는 오직 상담을 위해서만 활용되며,
+          어떠한 경우에도 외부에 공개하거나 판매하지 않습니다.
+        </p>
       </div>
     </div>
   </section>
@@ -791,7 +991,5 @@
       }
     });
   </script>
-
-</center>
 </body>
 </html>
