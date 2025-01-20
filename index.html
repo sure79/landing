@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>당신의 인생 타이밍을 찾아드립니다</title>
+  <title>운명을 바꾸는 인생 변혁 프로그램</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2C3E50;
-      --secondary: #3498DB;
-      --accent: #E74C3C;
-      --text: #2C3E50;
-      --light: #ECF0F1;
-      --gray: #95A5A6;
+      --primary: #1a237e;
+      --secondary: #303f9f;
+      --accent: #ff4081;
+      --success: #4caf50;
+      --warning: #ff9800;
+      --text: #263238;
+      --light: #f5f5f5;
+      --gray: #757575;
     }
     
     * {
@@ -33,10 +35,10 @@
       padding: 0 24px;
     }
 
-    /* Hero Section */
+    /* Hero Section with Mystery */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
       color: white;
       position: relative;
       display: flex;
@@ -47,20 +49,23 @@
     .hero::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('/api/placeholder/1920/1080') center/cover;
+      width: 200%;
+      height: 200%;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L100 50 L50 100 L0 50Z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E") repeat;
+      animation: bgMove 30s linear infinite;
       opacity: 0.1;
+    }
+
+    @keyframes bgMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-50%, -50%); }
     }
 
     .hero-content {
       position: relative;
-      z-index: 1;
-      text-align: center;
       max-width: 800px;
       margin: 0 auto;
+      text-align: center;
       padding: 0 24px;
     }
 
@@ -71,142 +76,229 @@
       line-height: 1.2;
     }
 
-    .hero p {
-      font-size: 1.25rem;
+    .hero .subtext {
+      font-size: 1.5rem;
       opacity: 0.9;
       margin-bottom: 40px;
     }
 
-    /* Problem Sections */
-    .problem-section {
+    /* Transformation Story Section */
+    .transformation {
       padding: 100px 0;
       background: white;
     }
 
-    .problem-grid {
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 48px;
+    }
+
+    .story-card {
+      padding: 32px;
+      background: var(--light);
+      border-radius: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Limited Spots Section */
+    .limited-spots {
+      padding: 100px 0;
+      background: var(--light);
+      text-align: center;
+    }
+
+    .timer-box {
+      background: white;
+      padding: 32px;
+      border-radius: 16px;
+      max-width: 500px;
+      margin: 48px auto;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .spots-left {
+      font-size: 2rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin: 24px 0;
+    }
+
+    /* Program Process Section */
+    .process {
+      padding: 100px 0;
+      background: white;
+    }
+
+    .process-steps {
+      position: relative;
+      max-width: 800px;
+      margin: 48px auto;
+      padding: 32px;
+    }
+
+    .step-card {
+      background: var(--light);
+      padding: 32px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .step-number {
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      color: white;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    /* Transformation Results Section */
+    .results {
+      padding: 100px 0;
+      background: linear-gradient(to bottom, var(--light) 0%, white 100%);
+    }
+
+    .results-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 32px;
       margin-top: 48px;
     }
 
-    .problem-card {
-      background: var(--light);
-      padding: 32px;
-      border-radius: 16px;
-      transition: transform 0.3s ease;
-    }
-
-    .problem-card:hover {
-      transform: translateY(-5px);
-    }
-
-    /* Solution Section */
-    .solution-section {
-      padding: 100px 0;
-      background: var(--light);
-    }
-
-    .solution-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 32px;
-      margin-top: 48px;
-    }
-
-    .step-card {
+    .result-card {
       background: white;
       padding: 32px;
       border-radius: 16px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
 
-    /* Review Section */
-    .reviews {
-      padding: 100px 0;
-      background: white;
-    }
-
-    .review-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-      margin-top: 48px;
-    }
-
-    .review-card {
-      padding: 32px;
-      background: var(--light);
-      border-radius: 16px;
-      position: relative;
-    }
-
-    .review-score {
-      color: var(--accent);
-      font-size: 1.5rem;
+    .result-number {
+      font-size: 3rem;
       font-weight: 700;
+      color: var(--accent);
       margin-bottom: 16px;
     }
 
-    .review-text {
-      margin-bottom: 16px;
-      font-size: 1.1rem;
-    }
-
-    .reviewer {
-      color: var(--gray);
-    }
-
-    /* Expert Section */
-    .expert-section {
+    /* Special Offer Section */
+    .offer {
       padding: 100px 0;
-      background: var(--light);
-    }
-
-    .expert-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-      margin-top: 48px;
-    }
-
-    .expert-card {
-      padding: 32px;
-      background: white;
-      border-radius: 16px;
+      background: var(--primary);
+      color: white;
       text-align: center;
     }
 
-    .expert-image {
-      width: 120px;
-      height: 120px;
-      border-radius: 60px;
-      margin: 0 auto 24px;
-      background: var(--light);
-    }
-
-    /* CTA Sections */
-    .cta-section {
-      padding: 100px 0;
+    .offer-box {
       background: white;
-      text-align: center;
-    }
-
-    .cta-box {
-      background: var(--light);
+      color: var(--text);
       padding: 48px;
-      border-radius: 24px;
+      border-radius: 16px;
       max-width: 600px;
-      margin: 0 auto;
+      margin: 48px auto;
     }
 
-    /* Pricing Plans */
-    .pricing-section {
+    .price-tag {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 24px 0;
+    }
+
+    .original-price {
+      text-decoration: line-through;
+      color: var(--gray);
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    /* Free PDF Section */
+    .free-pdf {
       padding: 100px 0;
       background: linear-gradient(to bottom, var(--light) 0%, white 100%);
     }
 
-    .pricing-plans {
+    .pdf-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 48px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .pdf-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .preview-image {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .pdf-features {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .pdf-features li {
+      padding: 12px 0;
+      padding-left: 28px;
+      position: relative;
+    }
+
+    .pdf-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--success);
+    }
+
+    .pdf-form {
+      display: grid;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .pdf-form input,
+    .pdf-form select {
+      width: 100%;
+      padding: 16px;
+      border: 2px solid var(--light);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .pdf-form input:focus,
+    .pdf-form select:focus {
+      outline: none;
+      border-color: var(--secondary);
+    }
+
+    /* Premium Plans Section */
+    .premium-plans {
+      padding: 100px 0;
+      background: white;
+    }
+
+    .plans-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 32px;
@@ -214,10 +306,9 @@
     }
 
     .plan-card {
-      background: white;
-      border-radius: 20px;
+      background: var(--light);
       padding: 40px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      border-radius: 20px;
       position: relative;
       transition: transform 0.3s ease;
     }
@@ -226,64 +317,8 @@
       transform: translateY(-5px);
     }
 
-    .plan-header {
-      text-align: center;
-      padding-bottom: 24px;
-      border-bottom: 2px solid var(--light);
-      margin-bottom: 24px;
-    }
-
-    .plan-header h3 {
-      font-size: 1.5rem;
-      color: var(--primary);
-      margin-bottom: 16px;
-    }
-
-    .plan-price {
-      margin: 24px 0;
-    }
-
-    .plan-price .original {
-      display: block;
-      text-decoration: line-through;
-      color: var(--gray);
-      font-size: 1.1rem;
-    }
-
-    .plan-price .current {
-      display: block;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-top: 8px;
-    }
-
-    .plan-features ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .plan-features li {
-      padding: 12px 0;
-      position: relative;
-      padding-left: 28px;
-      color: var(--text);
-    }
-
-    .plan-features li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--secondary);
-    }
-
-    .plan-btn {
-      width: 100%;
-      margin-top: 32px;
-    }
-
     .premium {
+      background: white;
       border: 2px solid var(--secondary);
       transform: scale(1.05);
     }
@@ -304,8 +339,48 @@
       font-weight: 500;
     }
 
-    .premium-btn {
-      background: var(--secondary);
+    .plan-header {
+      text-align: center;
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+      border-bottom: 2px solid rgba(0,0,0,0.1);
+    }
+
+    .plan-price {
+      margin: 24px 0;
+    }
+
+    .plan-price .original {
+      display: block;
+      text-decoration: line-through;
+      color: var(--gray);
+      font-size: 1.1rem;
+    }
+
+    .plan-price .current {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 8px;
+    }
+
+    .plan-features {
+      list-style: none;
+      margin: 0 0 32px 0;
+    }
+
+    .plan-features li {
+      padding: 12px 0;
+      padding-left: 28px;
+      position: relative;
+    }
+
+    .plan-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--success);
     }
 
     .modal {
@@ -330,34 +405,32 @@
 
     .close-modal {
       position: absolute;
-      right: 20px;
-      top: 20px;
+      right: 24px;
+      top: 24px;
       font-size: 24px;
       cursor: pointer;
       color: var(--gray);
     }
 
-    .form-group {
-      margin-bottom: 16px;
+    @media (max-width: 768px) {
+      .pdf-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .plans-container {
+        padding: 0 24px;
+      }
+      
+      .premium {
+        transform: none;
+      }
+      
+      .premium:hover {
+        transform: translateY(-5px);
+      }
     }
 
     /* Common Elements */
-    .section-title {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .section-title h2 {
-      font-size: 2.5rem;
-      color: var(--primary);
-      margin-bottom: 16px;
-    }
-
-    .section-title p {
-      color: var(--gray);
-      font-size: 1.2rem;
-    }
-
     .btn {
       display: inline-block;
       padding: 16px 32px;
@@ -367,29 +440,42 @@
       text-decoration: none;
       font-weight: 500;
       transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(231,76,60,0.2);
+      box-shadow: 0 4px 12px rgba(255,64,129,0.3);
     }
 
-    .price-tag {
-      font-size: 2.5rem;
-      color: var(--accent);
-      font-weight: 700;
-      margin: 24px 0;
-    }
-
-    .price-original {
-      text-decoration: line-through;
-      color: var(--gray);
+    .btn-large {
       font-size: 1.2rem;
+      padding: 20px 40px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .section-title p {
+      font-size: 1.2rem;
+      color: var(--gray);
     }
 
     @media (max-width: 768px) {
       .hero h1 {
         font-size: 2.5rem;
+      }
+      
+      .hero .subtext {
+        font-size: 1.2rem;
       }
       
       .section-title h2 {
@@ -399,126 +485,137 @@
   </style>
 </head>
 <body>
-  <!-- Hero Section -->
+  <!-- Hero Section with Mystery -->
   <section class="hero">
     <div class="hero-content">
-      <h1>당신의 인생 타이밍을<br>찾아드립니다</h1>
-      <p>10년 경력 전문가의 정확한 사주풀이로<br>인생의 중요한 순간을 놓치지 마세요</p>
-      <a href="#start" class="btn">무료 상담 시작하기</a>
+      <h1>"당신의 운명이 바뀌는 순간이 찾아옵니다"</h1>
+      <p class="subtext">10년 경력 명리학 전문가가 밝혀내는<br>당신만의 특별한 운명의 흐름</p>
+      <p style="margin-bottom: 32px; font-size: 1.2rem; opacity: 0.8;">* 이번 달 한정 10명만 모십니다 *</p>
+      <a href="#program" class="btn btn-large">나의 운명 흐름 보기</a>
     </div>
   </section>
 
-  <!-- Initial Problem Section -->
-  <section class="problem-section">
+  <!-- Transformation Story Section -->
+  <section class="transformation">
     <div class="container">
       <div class="section-title">
-        <h2>이런 고민이 있으신가요?</h2>
-        <p>많은 분들이 겪고 계신 문제입니다</p>
+        <h2>이런 변화를 경험하실 수 있습니다</h2>
+        <p>실제 고객들의 변혁 스토리</p>
       </div>
-      <div class="problem-grid">
-        <div class="problem-card">
-          <h3>신뢰성 문제</h3>
-          <p>"인터넷의 수많은 사주풀이... 어떤 게 진짜인지 모르겠어요"</p>
+      <div class="story-grid">
+        <div class="story-card">
+          <h3>"정확한 시기 예측으로 인생이 바뀌었어요"</h3>
+          <p>이직을 고민하던 중 상담을 받았는데, 정확히 그 시기에 좋은 기회가 찾아왔습니다. 연봉도 50% 상승했고, 더 좋은 회사로 옮길 수 있었어요.</p>
+          <small>김○○님 (34세, 직장인)</small>
         </div>
-        <div class="problem-card">
-          <h3>구체성 부족</h3>
-          <p>"너무 뜬구름 잡는 이야기만 하고 실질적인 도움은 못 받았어요"</p>
+        <div class="story-card">
+          <h3>"불안한 마음이 확신으로 바뀌었습니다"</h3>
+          <p>창업을 앞두고 너무 불안했는데, 정확한 시기 분석과 방향 제시로 자신감을 얻었어요. 지금은 안정적으로 사업을 운영하고 있습니다.</p>
+          <small>이○○님 (42세, 사업가)</small>
         </div>
-        <div class="problem-card">
-          <h3>접근성 문제</h3>
-          <p>"오프라인 점집은 부담스럽고, 어디서부터 시작해야 할지 모르겠어요"</p>
+        <div class="story-card">
+          <h3>"인생의 갈림길에서 옳은 선택을 했어요"</h3>
+          <p>결혼을 앞두고 있었는데, 상담을 통해 더 깊이 있게 생각해볼 수 있었어요. 결과적으로 최선의 선택을 할 수 있었습니다.</p>
+          <small>박○○님 (29세, 회사원)</small>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Solution Section -->
-  <section class="solution-section">
+  <!-- Limited Spots Section -->
+  <section class="limited-spots">
     <div class="container">
       <div class="section-title">
-        <h2>해결책을 제시합니다</h2>
-        <p>검증된 전문가의 체계적인 분석</p>
+        <h2>이번 달 특별 프로그램</h2>
+        <p>10명 한정 모집 - 선착순 마감</p>
       </div>
-      <div class="solution-steps">
+      <div class="timer-box">
+        <h3>남은 자리</h3>
+        <div class="spots-left">단 3자리</div>
+        <p>* 조기 마감될 수 있습니다 *</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Process Section -->
+  <section class="process" id="program">
+    <div class="container">
+      <div class="section-title">
+        <h2>당신만을 위한 맞춤형 운명 변혁 프로세스</h2>
+        <p>과학적이고 체계적인 4단계 프로그램</p>
+      </div>
+      <div class="process-steps">
         <div class="step-card">
-          <h3>1. 기초 분석</h3>
-          <p>무료 PDF를 통해 당신의 기본적인 운세를 파악합니다</p>
+          <div class="step-number">1</div>
+          <h3>심층 사주 분석</h3>
+          <p>당신만의 특별한 운명 흐름을 정확하게 파악합니다. 10년 경력의 전문가가 직접 분석합니다.</p>
         </div>
         <div class="step-card">
-          <h3>2. 심층 상담</h3>
-          <p>1:1 맞춤 상담으로 구체적인 해결책을 제시합니다</p>
+          <div class="step-number">2</div>
+          <h3>기회와 위험 포인트 도출</h3>
+          <p>인생의 중요한 시기와 기회, 주의해야 할 순간들을 명확하게 제시합니다.</p>
         </div>
         <div class="step-card">
-          <h3>3. 실천 가이드</h3>
-          <p>단계별 실천 방안을 제시하고 지속적으로 관리합니다</p>
+          <div class="step-number">3</div>
+          <h3>맞춤형 운명 전략 수립</h3>
+          <p>도출된 시기별로 최적의 선택과 행동 전략을 제시합니다.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>실천 가이드 제공</h3>
+          <p>구체적인 실행 계획과 주의사항, 개선점을 상세히 안내합니다.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Review Section -->
-  <section class="reviews">
+  <!-- Free PDF Section -->
+  <section class="free-pdf">
     <div class="container">
       <div class="section-title">
-        <h2>실제 고객 후기</h2>
-        <p>많은 분들이 긍정적인 변화를 경험하셨습니다</p>
+        <h2>무료 운세 분석 리포트 받기</h2>
+        <p>나만의 기본 운세를 먼저 확인해보세요</p>
       </div>
-      <div class="review-grid">
-        <div class="review-card">
-          <div class="review-score">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"이직 시기를 고민하다 상담받았는데, 정말 그 시기에 좋은 기회가 왔어요. 이제는 모든 중요한 결정 전에 상담받고 있습니다."</p>
-          <p class="reviewer">김○○님 (34세, 직장인)</p>
-        </div>
-        <div class="review-card">
-          <div class="review-score">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"막연한 불안감에 시달렸는데, 상담 후 구체적인 방향이 잡혀서 마음이 한결 편해졌어요. 실제로 조언해주신 대로 진행하니 좋은 결과가 있었습니다."</p>
-          <p class="reviewer">이○○님 (29세, 예비창업자)</p>
-        </div>
-        <div class="review-card">
-          <div class="review-score">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"다른 곳과 달리 실천 가능한 조언을 해주셔서 좋았어요. 특히 시기별 주의사항을 알려주셔서 중요한 순간들을 잘 대처할 수 있었습니다."</p>
-          <p class="reviewer">박○○님 (42세, 사업가)</p>
+      <div class="pdf-container">
+        <div class="pdf-content">
+          <div class="pdf-preview">
+            <img src="/api/placeholder/400/500" alt="무료 운세 분석 리포트 미리보기" class="preview-image">
+          </div>
+          <div class="pdf-details">
+            <h3>무료 운세 분석 리포트 포함 내용:</h3>
+            <ul class="pdf-features">
+              <li>당신의 기본 사주 구성</li>
+              <li>올해의 대운 흐름 분석</li>
+              <li>주의해야 할 시기 안내</li>
+              <li>운세 개선을 위한 조언</li>
+              <li>궁합 파트너 유형 분석</li>
+            </ul>
+            <form id="pdf-form" class="pdf-form">
+              <input type="text" placeholder="이름" required>
+              <input type="email" placeholder="이메일 주소" required>
+              <select required>
+                <option value="">관심 분야 선택</option>
+                <option value="love">연애/결혼</option>
+                <option value="career">직장/사업</option>
+                <option value="wealth">재물/투자</option>
+                <option value="general">전반적 운세</option>
+              </select>
+              <button type="submit" class="btn btn-large">무료 리포트 받기</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Expert Section -->
-  <section class="expert-section">
+  <!-- Premium Plans Section -->
+  <section class="premium-plans">
     <div class="container">
       <div class="section-title">
-        <h2>검증된 전문가가 함께합니다</h2>
-        <p>각 분야 최고의 전문가들이 당신의 길을 안내합니다</p>
+        <h2>프리미엄 운세 상담 프로그램</h2>
+        <p>더 자세한 분석과 구체적인 해결책이 필요하신가요?</p>
       </div>
-      <div class="expert-grid">
-        <div class="expert-card">
-          <div class="expert-image"></div>
-          <h3>김○○ 선생님</h3>
-          <p>명리학 전문가<br>15년 경력</p>
-        </div>
-        <div class="expert-card">
-          <div class="expert-image"></div>
-          <h3>이○○ 선생님</h3>
-          <p>사주풀이 전문가<br>12년 경력</p>
-        </div>
-        <div class="expert-card">
-          <div class="expert-image"></div>
-          <h3>박○○ 선생님</h3>
-          <p>운명학 전문가<br>10년 경력</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing Section -->
-  <section class="pricing-section" id="pricing">
-    <div class="container">
-      <div class="section-title">
-        <h2>상담 플랜</h2>
-        <p>당신의 상황에 맞는 최적의 플랜을 선택하세요</p>
-      </div>
-      
-      <div class="pricing-plans">
+      <div class="plans-container">
         <div class="plan-card basic">
           <div class="plan-header">
             <h3>기본 상담</h3>
@@ -527,15 +624,14 @@
               <span class="current">49,000원</span>
             </div>
           </div>
-          <div class="plan-features">
-            <ul>
-              <li>30분 전화 상담</li>
-              <li>기본 운세 분석 보고서</li>
-              <li>올해의 운세 가이드</li>
-              <li>이메일 리포트 제공</li>
-            </ul>
-          </div>
-          <button class="btn plan-btn" onclick="openConsultModal('basic')">신청하기</button>
+          <ul class="plan-features">
+            <li>30분 전화 상담</li>
+            <li>기본 사주 분석</li>
+            <li>운세 개선 가이드</li>
+            <li>인생 타이밍 체크</li>
+            <li>올해의 행운 포인트</li>
+          </ul>
+          <button class="btn" onclick="openModal('basic')">신청하기</button>
         </div>
 
         <div class="plan-card premium">
@@ -547,38 +643,35 @@
               <span class="current">99,000원</span>
             </div>
           </div>
-          <div class="plan-features">
-            <ul>
-              <li>60분 화상 상담</li>
-              <li>심층 사주 분석 보고서</li>
-              <li>맞춤형 솔루션 제공</li>
-              <li>연간 운세 가이드</li>
-              <li>1개월 이메일 질문</li>
-              <li>녹화 영상 제공</li>
-            </ul>
-          </div>
-          <button class="btn plan-btn premium-btn" onclick="openConsultModal('premium')">신청하기</button>
+          <ul class="plan-features">
+            <li>60분 화상 상담</li>
+            <li>심층 사주 분석</li>
+            <li>맞춤형 해결책 제시</li>
+            <li>인생 로드맵 설계</li>
+            <li>월별 운세 가이드</li>
+            <li>1개월 이메일 질문</li>
+          </ul>
+          <button class="btn btn-accent" onclick="openModal('premium')">신청하기</button>
         </div>
 
-        <div class="plan-card membership">
+        <div class="plan-card vip">
           <div class="plan-header">
-            <h3>연간 멤버십</h3>
+            <h3>VIP 프로그램</h3>
             <div class="plan-price">
               <span class="original">990,000원</span>
               <span class="current">499,000원</span>
             </div>
           </div>
-          <div class="plan-features">
-            <ul>
-              <li>분기별 화상 상담 (총 4회)</li>
-              <li>매월 운세 리포트</li>
-              <li>VIP 전용 상담 채널</li>
-              <li>긴급 상담 (월 1회)</li>
-              <li>주요 이벤트 타이밍 알림</li>
-              <li>성공 사례 강의 참석권</li>
-            </ul>
-          </div>
-          <button class="btn plan-btn" onclick="openConsultModal('membership')">신청하기</button>
+          <ul class="plan-features">
+            <li>분기별 화상 상담 (연 4회)</li>
+            <li>운명 변혁 프로그램</li>
+            <li>성공 로드맵 설계</li>
+            <li>24시간 카톡 상담</li>
+            <li>월별 상세 운세 제공</li>
+            <li>긴급 상담 (월 1회)</li>
+            <li>귀인 찾기 서비스</li>
+          </ul>
+          <button class="btn" onclick="openModal('vip')">신청하기</button>
         </div>
       </div>
     </div>
@@ -588,41 +681,24 @@
   <div id="consultModal" class="modal">
     <div class="modal-content">
       <span class="close-modal">&times;</span>
-      <h3>상담 신청하기</h3>
-      <form id="consultForm" class="consult-form">
-        <div class="form-group">
-          <input type="text" placeholder="이름" required>
-        </div>
-        <div class="form-group">
-          <input type="tel" placeholder="연락처" required>
-        </div>
-        <div class="form-group">
-          <input type="email" placeholder="이메일" required>
-        </div>
-        <div class="form-group">
-          <select required>
-            <option value="">상담 분야 선택</option>
-            <option value="love">연애/결혼</option>
-            <option value="career">직장/사업</option>
-            <option value="wealth">재테크/투자</option>
-            <option value="life">인생/운명</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <textarea placeholder="문의사항이나 원하시는 상담 시간대를 알려주세요" rows="4"></textarea>
-        </div>
-        <button type="submit" class="btn submit-btn">신청하기</button>
-      </form>
+      <div id="modalContent"></div>
     </div>
   </div>
 
-  <!-- Final CTA Section -->
-  <section class="cta-section" id="start">
+  <!-- Results Section -->
+  <section class="results">
     <div class="container">
-      <div class="cta-box">
-        <h2>지금 시작하세요</h2>
-        <p>무료 PDF로 먼저 시작해보세요</p>
-        <form id="pdf-form" class="pdf-form">
-          <input type="email" placeholder="이메일 주소를 입력하세요" required 
-            style="width: 100%; padding: 16px; margin-bottom: 16px; border: 2px solid var(--secondary); border-radius: 8px;">
-          <button type="submit" class="btn">
+      <div class="section-title">
+        <h2>97% 이상의 고객이 경험한 변화</h2>
+        <p>실제 고객들의 피드백 기반</p>
+      </div>
+      <div class="results-grid">
+        <div class="result-card">
+          <div class="result-number">98%</div>
+          <h3>정확도</h3>
+          <p>고객들이 평가한 사주 분석 정확도</p>
+        </div>
+        <div class="result-card">
+          <div class="result-number">94%</div>
+          <h3>만족도</h3>
+          <p>프로그램 전반에 대한 고객 만
